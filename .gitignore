@@ -1,0 +1,8 @@
+# Files and folders excluded of Git repository
+
+# Node installation files
+node_modules/**
+
+
+# Temporary Rails files
+tmp/**
