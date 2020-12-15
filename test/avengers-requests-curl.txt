@@ -1,0 +1,85 @@
+# ---------------------------------------------------
+# AVENGERS - THIS SHOULD SUCCEED
+
+# create action
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Black Widow",
+  "real_name": "Natalia Alianovna Romanoff"
+}'
+
+# create action 2
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Hulk",
+  "real_name": "Robert Bruce Banner"
+}'
+
+# update action
+curl -X "PUT" "http://localhost:3000/avenger/1" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "description": "Russian Secret Agent"
+}'
+
+# /avenger route
+curl -i -X "GET" "http://localhost:3000/avenger"
+
+# avenger/preview route
+curl -i -X "GET" "http://localhost:3000/avenger/preview"
+
+# ---------------------------------------------------
+# USERS - THIS SHOULD SUCCEED
+
+# create action
+curl -X "POST" "http://localhost:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "email": "fake.address@gmail.com",
+  "firstname": "Christopher",
+  "lastname": "Hemsworth"
+}'
+
+# update action
+curl -X "PUT" "http://localhost:3000/user/1" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Scarlett",
+  "lastname": "Johansson"
+}'
+
+# update action
+curl -X "PATCH" "http://localhost:3000/user/1" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Mark",
+  "lastname": "Ruffalo"
+}'
+
+# ---------------------------------------------------
+# DELETE ACTIONS (ALL TABLES) - THIS SHOULD SUCCEED
+
+# delete action
+curl -i -X "DELETE" "http://localhost:3000/user/1"
+
+# Delete request
+curl -i -X "DELETE" "http://localhost:3000/avenger/1"
+
+# ---------------------------------------------------
+# THIS SHOULD FAIL
+# update action
+curl -X "PUT" "http://localhost:3000/avenger/1000" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "description": "bla"
+}'
+

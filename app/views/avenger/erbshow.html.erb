@@ -1,0 +1,16 @@
+<%# This file is only added for debugging purposes %>
+<h1> Rails test: Avengers data preview </h1>
+<% if @avengers.blank? %>
+<p>There are not any avengers currently in the system.</p>
+<% else %>
+<p>These are the current avengers in our system:</p>
+
+<% @avengers.each do |a| %>
+  <h2> <%= a.super_hero_name %> </h2>
+  <ul id = a.super_hero_name >
+    <li> Real Name: <%= a.real_name %> </li>
+    <li> Status: <%= a.status %> </li>
+  </ul>
+<% end %>
+
+<% end %>

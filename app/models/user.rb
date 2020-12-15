@@ -1,0 +1,7 @@
+class User < ApplicationRecord
+  validates :firstname, presence: true
+  validates :lastname, presence: true
+  validates :email, presence: true, uniqueness: true
+  # Warning! Uniqueness can be violated with multiple connexions
+  # See: https://  guides.rubyonrails.org/active_record_validations.html#uniqueness
+end
