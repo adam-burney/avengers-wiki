@@ -45,17 +45,6 @@ class UserController < ApplicationController
   end
   
   #------------------
-
-  # Not in API: new and edit actions render HTML forms
-  def new
-    render plain: "new action not available in API"
-  end
-  
-  def edit
-    render plain: "edit action not available in API"
-  end
-
-  #------------------
   private
 
   # Allowed parameters to protect the database  

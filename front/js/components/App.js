@@ -5,13 +5,13 @@
 import React from 'react';
 
 import Timestamp from './Timestamp';
+import HomePage from './HomePage';
 
 const App = () => {
   return (
     <div>
-      <h1>Hello World!</h1>
-
       <Timestamp />
+      <HomePage />
     </div>
   );
 };

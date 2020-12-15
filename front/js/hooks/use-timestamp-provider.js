@@ -15,6 +15,7 @@ const useTimestampProvider = () => {
   const fetchTimestamp = async () => {
     try {
       const res = await axios.get('/home/timestamp');
+      log.debug("\ntimestamp JSON: " + res)
 
       setTimestamp(res.data.timestamp);
     } catch (error) {
