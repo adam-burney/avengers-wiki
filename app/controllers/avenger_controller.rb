@@ -1,4 +1,8 @@
 class AvengerController < ApplicationController
+  # TODO Rights management
+  # After login, we should ask the user controller if the user email
+  # has been verified before giving access to creating or editing a record
+
   # Debug preview using ERB
   def erbshow
     @avengers = Avenger.all
@@ -24,8 +28,9 @@ class AvengerController < ApplicationController
   end
   
   def create
-	avenger = Avenger.create!(avenger_params)
+	avenger = Avenger.create!(db_params)
     if avenger
+      #avenger.update(to_active(params[:status]))
       render json: {msg: "New avenger with id: " + avenger.id.to_s + " created"} 
     else
       render json: avenger.errors
@@ -35,9 +40,9 @@ class AvengerController < ApplicationController
   
   def update
 	avenger = Avenger.find_by(id: params[:id])
-	
     if avenger
-      avenger.update!(avenger_params)
+      avenger.update(db_params)
+      #avenger.update(to_active(params[:status]))
       render json: {msg: avenger.super_hero_name + " updated"} 
     else
       render_json_not_found(params[:id])
@@ -65,10 +70,16 @@ class AvengerController < ApplicationController
   end
 
   #------------------
-  # Allowed parameters to protect the database
+ 
   private
-  def avenger_params
-    params.permit(:super_hero_name, :real_name, :status, :age, :description)
+  
+   # Allowed parameters to protect the database
+  def db_params
+    # Including the *_img URLs allows the UI to set them.
+    # From example : "https://www.digitalocean.com/community/tutorials/how-to-set-up-a-ruby-on-rails-project-with-a-react-frontend"
+    # It is more a backend job, but at least it would not corrupt the database...
+    #params.permit(:super_hero_name, :real_name, :age, :description, hero_img, no_suit_img)
+    params.permit(:super_hero_name, :real_name, :age, :status, :description)
   end
 
   def render_json_not_found(id)

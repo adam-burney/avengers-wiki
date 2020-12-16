@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 2020_12_11_204744) do
   create_table "avengers", force: :cascade do |t|
     t.string "super_hero_name", null: false
     t.string "real_name"
-    t.boolean "status"
-    t.text "age"
+    t.boolean "active"
+    t.string "age"
     t.text "description"
     t.string "hero_img"
     t.string "no_suit_img"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 2020_12_11_204744) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "email", null: false
     t.string "firstname", null: false
     t.string "lastname", null: false
-    t.string "email", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

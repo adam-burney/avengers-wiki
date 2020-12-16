@@ -1,16 +1,27 @@
 # ---------------------------------------------------
 # AVENGERS - THIS SHOULD SUCCEED
 
-# create action
+# create action 1
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Iron Man",
+  "real_name": "Tony Starks",
+  "status": "retired"
+}'
+
+# create action 2
 curl -X "POST" "http://localhost:3000/avenger" \
      -i \
      -H 'Content-Type: application/json' \
      -d $'{
   "super_hero_name": "Black Widow",
-  "real_name": "Natalia Alianovna Romanoff"
+  "real_name": "Natalia Alianovna Romanoff",
+  "status": "active"
 }'
 
-# create action 2
+# create action 3
 curl -X "POST" "http://localhost:3000/avenger" \
      -i \
      -H 'Content-Type: application/json' \
@@ -82,11 +93,29 @@ curl -i -X "DELETE" "http://localhost:3000/avenger/1"
 
 # ---------------------------------------------------
 # THIS SHOULD FAIL
-# update action
+
+# update avenger action, wrong id
 curl -X "PUT" "http://localhost:3000/avenger/1000" \
      -i \
      -H 'Content-Type: application/json' \
      -d $'{
   "description": "bla"
+}'
+
+# create avenger action, no super_hero_name
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "real_name": "Tony Starks"
+}'
+
+# create user action, no email
+curl -X "POST" "http://localhost:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Christopher",
+  "lastname": "Hemsworth"
 }'
 
