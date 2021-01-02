@@ -1,0 +1,108 @@
+# ---------------------------------------------------
+# AVENGERS - THIS SHOULD SUCCEED
+
+# create action 1
+curl -X "POST" "http://127.0.0.1:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Iron Man",
+  "real_name": "Tony Starks",
+  "status": "retired"
+}'
+
+# create action 2
+curl -X "POST" "http://127.0.0.1:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Black Widow",
+  "real_name": "Natalia Alianovna Romanoff",
+  "status": "active"
+}'
+
+# create action 3
+curl -X "POST" "http://127.0.0.1:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Hulk",
+  "real_name": "Robert Bruce Banner"
+}'
+
+# update action
+curl -X "PUT" "http://127.0.0.1:3000/avenger/black_widow" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+    "super_hero_name": "Black Widooow",
+    "real_name": "Natasha Romanoff",
+    "description": "Russian Secret Agent"
+}'
+
+# Widooow... correction 
+# update action
+curl -X "PUT" "http://127.0.0.1:3000/avenger/black_widooow" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+    "super_hero_name": "Black Widow"
+}'
+
+# Show black_widow route
+curl -i -X "GET" "http://127.0.0.1:3000/avenger/black_widow"
+
+# /avenger (index) route
+curl -i -X "GET" "http://127.0.0.1:3000/avenger"
+
+# avenger/list route
+curl -i -X "GET" "http://127.0.0.1:3000/avenger/list"
+
+# ---------------------------------------------------
+# USERS - THIS SHOULD SUCCEED
+
+# create action
+curl -X "POST" "http://127.0.0.1:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "email": "address1@fakemail.com",
+  "firstname": "Christopher",
+  "lastname": "Hemsworth"
+}'
+
+# create action
+curl -X "POST" "http://127.0.0.1:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "email": "address2@fakemail.com",
+  "firstname": "Chris",
+  "lastname": "Evans"
+}'
+
+# put request (update action) 
+curl -X "PUT" "http://127.0.0.1:3000/user/1" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Scarlett",
+  "lastname": "Johansson"
+}'
+
+# patch request (update action) 
+curl -X "PATCH" "http://127.0.0.1:3000/user/2" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Mark",
+  "lastname": "Ruffalo"
+}'
+
+# /user route
+curl -i -X "GET" "http://127.0.0.1:3000/user"
+
+# show route
+curl -i -X "GET" "http://127.0.0.1:3000/user/1"
+
+printf '\n'

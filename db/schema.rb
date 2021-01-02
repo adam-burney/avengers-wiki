@@ -14,12 +14,11 @@ ActiveRecord::Schema.define(version: 2020_12_11_204744) do
 
   create_table "avengers", force: :cascade do |t|
     t.string "super_hero_name", null: false
+    t.string "url_string"
     t.string "real_name"
     t.boolean "active"
     t.string "age"
     t.text "description"
-    t.string "hero_img"
-    t.string "no_suit_img"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

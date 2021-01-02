@@ -4,6 +4,7 @@
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-bare-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const config = require('./webpack.config.base');
 
@@ -12,6 +13,7 @@ config.mode = 'development';
 config.output.filename = 'js/app.js';
 
 config.plugins = [
+  new CleanWebpackPlugin(),
   new MiniCssExtractPlugin({
     filename: 'css/app.css',
   }),

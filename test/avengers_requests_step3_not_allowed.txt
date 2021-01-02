@@ -1,0 +1,54 @@
+# ---------------------------------------------------
+# DELETE ACTIONS (ALL TABLES) - THIS SHOULD SUCCEED
+
+# delete user with id:1
+curl -i -X "DELETE" "http://localhost:3000/user/1"
+
+# Delete Hulk
+curl -i -X "DELETE" "http://localhost:3000/avenger/hulk"
+
+# ---------------------------------------------------
+# THIS SHOULD FAIL
+
+# create avenger action, no super_hero_name
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "description": "bla"
+}'
+
+# update avenger action, wrong url
+curl -X "PUT" "http://localhost:3000/avenger/potato" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "description": "bla"
+}'
+
+# update avenger action, duplicate avenger (generated url should be unique)
+curl -X "PUT" "http://localhost:3000/avenger/black_widow" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "super_hero_name": "Hulk"
+}'
+
+# create avenger action, no super_hero_name
+curl -X "POST" "http://localhost:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "real_name": "Tony Starks"
+}'
+
+# create user action, no email
+curl -X "POST" "http://localhost:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "firstname": "Christopher",
+  "lastname": "Hemsworth"
+}'
+
+printf '\n'

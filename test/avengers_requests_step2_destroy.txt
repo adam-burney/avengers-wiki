@@ -1,0 +1,9 @@
+# DELETE ACTIONS (ALL TABLES) - THIS SHOULD SUCCEED
+
+# delete user with id:1
+curl -i -X "DELETE" "http://127.0.0.1:3000/user/1"
+
+# Delete Hulk
+curl -i -X "DELETE" "http://127.0.0.1:3000/avenger/hulk"
+
+printf '\n'
