@@ -1,10 +1,5 @@
 # Files and folders excluded of Git repository
 
-# Do not upload the demo images on a public repo,
-# in case there would be problems with copyrights...
-/public/images/avengers/*
-
-
 # Node installation files
 node_modules/**
 

@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   put     'user(/:id)',  to: 'user#update'
   delete  'user(/:id)',  to: 'user#destroy'
 
-  #home
+  # Timestamp debug action
   get  'home/timestamp'
+
+  # Root and redirect for unknown routes
   root 'home#index'
+  get '*path' => redirect('/')
 end
