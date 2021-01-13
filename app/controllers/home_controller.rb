@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  skip_before_action :authenticate_request, only: [:index, :timestamp]
+
   def index
     # If there is ERB code in /app/views/layouts/application.html.erb, any call
     # to the render function here will block the JS app display (see option 1)

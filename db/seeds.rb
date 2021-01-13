@@ -15,4 +15,8 @@ Avenger.create({:super_hero_name => "Black Widow",      :real_name => "Natalia A
 Avenger.create({:super_hero_name => "Hawkeye",          :real_name => "Clinton Francis Barton"      })
 
 # Add records in users table
-User.create({:firstname => "Abraham", :lastname => "Lincoln", :email => "abraham.licoln@gmail.com"})
+User.create({:email => "abraham.licoln@gmail.com", password: 'admin' , password_confirmation: 'admin',
+             :firstname => "Abraham", :lastname => "Lincoln"})
+
+User.create({:email => "fs@gmail.com", password: '123' , password_confirmation: '123',
+:firstname => "Frodon", :lastname => "Sacquet"})

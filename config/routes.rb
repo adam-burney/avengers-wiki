@@ -1,18 +1,18 @@
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
 
-  # avenger
+  # Avenger
   get     'avenger/list'
   get     'avenger/heroimg(/:s_url)',  to: 'avenger#heroimg'
   get     'avenger/charimg(/:s_url)',  to: 'avenger#charimg'
-  get     'avenger',                 to: 'avenger#index'
-  post    'avenger',                 to: 'avenger#create'
+  get     'avenger',                   to: 'avenger#index'
+  post    'avenger',                   to: 'avenger#create'
   get     'avenger(/:s_url)',          to: 'avenger#show'
   patch   'avenger(/:s_url)',          to: 'avenger#update'
   put     'avenger(/:s_url)',          to: 'avenger#update'
   delete  'avenger(/:s_url)',          to: 'avenger#destroy'
 
-  # user
+  # User
   get     'user',        to: 'user#index'
   post    'user',        to: 'user#create'
   get     'user(/:id)',  to: 'user#show'
@@ -23,7 +23,10 @@ Rails.application.routes.draw do
   # Timestamp debug action
   get  'home/timestamp'
 
+  # Authentication
+  post 'authenticate', to: 'authentication#authenticate'
+
   # Root and redirect for unknown routes
   root 'home#index'
-  get '*path' => redirect('/')
+  get '*path', to: 'home#index'
 end

@@ -1,9 +1,8 @@
 require 'find'
 
 class AvengerController < ApplicationController
-  # TODO Rights management
-  # After login, we should ask the user controller if the user email
-  # has been verified before giving access to creating or editing a record
+  skip_before_action :authenticate_request, only: [:index, :list, :show, :heroimg, :charimg]
+  #skip_before_action :authenticate_request
 
   # Short list for home page
   def index
@@ -82,7 +81,7 @@ class AvengerController < ApplicationController
 
   #------------------ 
   private
-  
+
   # Allowed parameters to protect the database
   def db_params
     # Including the *_img URLs allows the UI to set them.

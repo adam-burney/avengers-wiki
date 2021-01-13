@@ -1,0 +1,42 @@
+# ---------------------------------------------------
+# TEST WITH AUTHENTIFICATION
+
+# update action
+curl -X "PUT" "http://127.0.0.1:3000/avenger/black_widow" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2MTAyNjY5MjF9.dIcbedPNEqmNlJFtsnYxYWxtVXV4zGW4T1ylwiF1Xn0' \
+     -d $'{
+    "super_hero_name": "Black Widow",
+    "real_name": "Natasha Romanoff",
+    "description": "Russian Secret Agent"
+}'
+
+# create user
+curl -X "POST" "http://127.0.0.1:3000/user" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -d $'{
+  "email": "address1@fakemail.com",
+  "password": "123",
+  "password_confirmation": "123",
+  "firstname": "Christopher",
+  "lastname": "Hemsworth"
+}'
+
+# create Hulk
+curl -X "POST" "http://127.0.0.1:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTA1MTU2NDZ9.TAoFNZ0VxexzeNp9rSRnCisdb3qyx4rP_fYxK0ZCUNU' \
+     -d $'{
+  "super_hero_name": "Hulk",
+  "real_name": "Robert Bruce Banner"
+}'
+
+# -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTA0ODM3NDF9.E72Hah-g1w_Hg4yH_pAJf7w6LN31WhP-2yFGk_6P5nM' \
+
+curl -X POST "http://127.0.0.1:3000/user/authenticate" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"address1@fakemail.com","password":"123"}'
+     
