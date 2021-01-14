@@ -4,7 +4,7 @@
 
 class UiParams {
     constructor() {
-      this.mainTitle = 'Avenger Wiki';
+      this.mainTitle = 'Avengers Wiki';
     }
   }
 

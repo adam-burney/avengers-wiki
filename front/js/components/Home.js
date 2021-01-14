@@ -22,8 +22,10 @@ class Home extends React.Component {
     this.api = new Api;
     this.ui = new UiParams;
   }
-
+  
   componentDidMount() {
+    document.title = `${this.ui.mainTitle}: Accueil`;
+
     // Fetch preview data for all avengers
     fetch(this.api.avengerUrl)
       .then(response => {
@@ -38,13 +40,13 @@ class Home extends React.Component {
         if(response.error){
           throw new Error('API fetch failed ' + response.error);
         }
-
+        
         this.setState({ allAvengersData: response });
         log.info('API fetch successful!');
       })
-      .catch(() => log.debug('Error fetching home page preview:', error.message) );
+      .catch((error) => log.debug('Error fetching home page preview:', error.message) );
   }
-  
+
   getStatus(avenger) {
     if(avenger.status === 'active') { return 'actif';  }
     else                            { return 'retiré'; }
@@ -67,7 +69,7 @@ class Home extends React.Component {
 
     return (
       <div  id='Home'>
-        <h2>Home</h2>
+        <h2>Accueil</h2>
         <div>{allAvengersData.length > 0 ? avengersHtml : 'No data!' } </div>
       </div>
     );

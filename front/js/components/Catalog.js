@@ -4,12 +4,13 @@
 
 /* External files */
 import React from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /* Project files */
 import Api from '../lib/Api';
 import UiParams from '../lib/UiParams';
+import {userAuthentified} from  '../lib/AuthToken.js';
 import getLogger from '../utils/logger';
 
 const log = getLogger('Catalog');
@@ -17,18 +18,14 @@ const log = getLogger('Catalog');
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      avengerData: []
-    };
+    this.state = {avengerData: []};
     this.hero_name_url = props.match.params.hero_name_url;
     this.api = new Api;
     this.ui = new UiParams;
   }
 
   componentDidMount() {
-    log.info('Component mounted');
     const url = this.api.avengerUrl + this.hero_name_url;
-    //const url = this.api.avengerUrl + 'crap!';
 
     fetch(url)
       .then(response => {
@@ -37,7 +34,7 @@ class Catalog extends React.Component {
         // When HTTP status is changed from 200 to 404 in Rails, the json sent is empty
         //log.debug('response.json()=', JSON.stringify(response.json()) );
 
-        if (response.ok) {        
+        if (response.ok) {    
           return response.json();
         }
         
@@ -80,11 +77,10 @@ class Catalog extends React.Component {
         </div>
         <div>
           <img className='avenger-image' src={charImageUrl} alt={`${avengerData.real_name} picture`} />
-        </div>       
+        </div>
       </div>
     );
   }
-  
 }
 
 Catalog.propTypes = {
