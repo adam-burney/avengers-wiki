@@ -21,11 +21,21 @@ class UserController < ApplicationController
 
   #----------------------
   # Actions done with authentication token
-  def index 
-    render json: User.all, only: [:id, :email]
+
+  def index
+    if @current_user.rights_group == 'admin'
+      render json: User.all, only: [:id, :email, :firstname, :lastname, :rights_group]
+    else
+      render json: { error: 'Not Authorized' }, status: 401
+    end
   end
 
   def show
+    unless action_permitted_for(params[:id])
+      render json: { error: 'Not Authorized' }, status: 401
+      return
+    end
+
     user = User.find_by(id: params[:id])
     if user
       render json: user, only: [:id, :email, :firstname, :lastname]
@@ -35,7 +45,12 @@ class UserController < ApplicationController
   end
   
   def update
-	user = User.find_by(id: params[:id])
+    unless action_permitted_for(params[:id])
+      render json: { error: 'Not Authorized' }, status: 401
+      return
+    end
+
+	  user = User.find_by(id: params[:id])
     if user
       user.update!(user_params)
       render json: {msg: user.email + " updated"} 
@@ -44,14 +59,34 @@ class UserController < ApplicationController
     end
   end
 
+  def set_rights
+    if @current_user.rights_group != 'admin'
+      logger.info('SECURITY LOG: Unauthorized set_rights action from:' + @current_user.email.to_s)
+      render json: { error: 'Not Authorized' }, status: 401
+    else
+      user = User.find_by(id: params[:id])
+      if user
+        user.update!(set_rights_params)
+        render json: {msg: user.email + " rights updated"} 
+      else
+        render_json_not_found(params[:id])
+      end
+    end
+  end
+
   def destroy
-	user = User.find_by(id: params[:id])
-	if user
-	  user.destroy
+    unless action_permitted_for(params[:id])
+      render json: { error: 'Not Authorized' }, status: 401
+      return
+    end
+
+    user = User.find_by(id: params[:id])
+    if user
+      user.destroy
       render json: {msg: user.email + " destroyed"}
-	else
-	  render_json_not_found(params[:id])
-	end
+    else
+      render_json_not_found(params[:id])
+    end
   end
   
   #------------------
@@ -66,9 +101,24 @@ class UserController < ApplicationController
     params.permit(:email, :password, :password_confirmation, :firstname, :lastname)
   end
 
+  def set_rights_params
+    params.permit(:rights_group)
+  end
+
+  # Verify that the authentified user has modification rights for target id
+  def action_permitted_for(target_id)   
+    # Normal users have rights for themselves only, admin user group have all access
+    if (@current_user.id == target_id.to_i  || @current_user.rights_group == 'admin')
+      return true 
+    else
+      logger.info('SECURITY LOG: Unauthorized user update from:' + @current_user.email.to_s)
+      return nil
+    end
+  end
+
   def render_json_not_found(id)
       if id
-	    render json: {error: "User with id: " + id + " not found"}
+	      render json: {error: "User with id: " + id + " not found"}
       else
         render json: {error: "Wrong URL or missing /:id"}
       end

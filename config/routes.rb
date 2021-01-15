@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   post    'user',        to: 'user#create'
   get     'user(/:id)',  to: 'user#show'
   patch   'user(/:id)',  to: 'user#update'
+  put     'user(/:id)/set_rights', to: 'user#set_rights'
   put     'user(/:id)',  to: 'user#update'
   delete  'user(/:id)',  to: 'user#destroy'
 

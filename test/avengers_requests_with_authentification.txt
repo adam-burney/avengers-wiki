@@ -1,6 +1,16 @@
 # ---------------------------------------------------
 # TEST WITH AUTHENTIFICATION
 
+# create Hulk
+curl -X "POST" "http://127.0.0.1:3000/avenger" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTA1MTU2NDZ9.TAoFNZ0VxexzeNp9rSRnCisdb3qyx4rP_fYxK0ZCUNU' \
+     -d $'{
+  "super_hero_name": "Hulk",
+  "real_name": "Robert Bruce Banner"
+}'
+
 # update action
 curl -X "PUT" "http://127.0.0.1:3000/avenger/black_widow" \
      -i \
@@ -12,7 +22,10 @@ curl -X "PUT" "http://127.0.0.1:3000/avenger/black_widow" \
     "description": "Russian Secret Agent"
 }'
 
-# create user
+# ---------------------------------------------------
+# USERS TEST WITH AUTHENTIFICATION
+
+# create user (public api action)
 curl -X "POST" "http://127.0.0.1:3000/user" \
      -i \
      -H 'Content-Type: application/json' \
@@ -24,19 +37,73 @@ curl -X "POST" "http://127.0.0.1:3000/user" \
   "lastname": "Hemsworth"
 }'
 
-# create Hulk
-curl -X "POST" "http://127.0.0.1:3000/avenger" \
-     -i \
-     -H 'Content-Type: application/json' \
-     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTA1MTU2NDZ9.TAoFNZ0VxexzeNp9rSRnCisdb3qyx4rP_fYxK0ZCUNU' \
-     -d $'{
-  "super_hero_name": "Hulk",
-  "real_name": "Robert Bruce Banner"
-}'
+# Frodon authentication
+curl -X POST "http://127.0.0.1:3000/authenticate" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"fs@gmail.com","password":"123"}'
 
-# -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTA0ODM3NDF9.E72Hah-g1w_Hg4yH_pAJf7w6LN31WhP-2yFGk_6P5nM' \
-
-curl -X POST "http://127.0.0.1:3000/user/authenticate" \
+# Christopher Hemsworth authentication
+curl -X POST "http://127.0.0.1:3000/authenticate" \
      -H "Content-Type: application/json" \
      -d '{"email":"address1@fakemail.com","password":"123"}'
+
+# abraham.licoln@gmail.com authentication
+curl -X POST "http://127.0.0.1:3000/authenticate" \
+     -H "Content-Type: application/json" \
+     -d '{"email":"abraham.licoln@gmail.com","password":"admin"}'
+ 
+ # Bad token
+ curl -X "PUT" "http://127.0.0.1:3000/user/3/set_rights" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.abc1c2VyX2lkIjozLCJleHAiOjE2MTA3NTM2OTN9.9_RooTkrCIY3QiAfPYti5A9idUoydySNTAgrDrhuVzQ' \
+     -d $'{"rights_group": "admin"}'
+
+ # Abraham promotes Frodon to administrator
+ curl -X "PUT" "http://127.0.0.1:3000/user/2/set_rights" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MTA3NTI0MzV9.6hSFLj8bQGdKf5CasD6AOtAanHuqJcg31ndurZoQ9sk' \
+     -d $'{"rights_group": "ADmin"}'
+
+ # Christopher Hemsworth promotes himself to administrator
+ curl -X "PUT" "http://127.0.0.1:3000/user/3/set_rights" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MTA3NTM2OTN9.9_RooTkrCIY3QiAfPYti5A9idUoydySNTAgrDrhuVzQ' \
+     -d $'{"rights_group": "admin"}'
+
+ # Christopher Hemsworth changes his email
+curl -X "PUT" "http://127.0.0.1:3000/user/3" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MTA3NTM2OTN9.9_RooTkrCIY3QiAfPYti5A9idUoydySNTAgrDrhuVzQ' \
+     -d $'{"email": "christopher.hemsworth@fakemail.com"}'
+
+# Christopher Hemsworth changes Frodon lastname
+curl -X "PUT" "http://127.0.0.1:3000/user/2" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MTA3NTM2OTN9.9_RooTkrCIY3QiAfPYti5A9idUoydySNTAgrDrhuVzQ' \
+     -d $'{"lastname": "potato"}'
+
+# Abraham changes Frodon email
+curl -X "PUT" "http://127.0.0.1:3000/user/2" \
+     -i \
+     -H 'Content-Type: application/json' \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MTA3NTI0MzV9.6hSFLj8bQGdKf5CasD6AOtAanHuqJcg31ndurZoQ9sk' \
+     -d $'{"email": "frodon.saquet@gmail.com"}'
+
+# Abraham deletes Christopher Hemsworth
+curl -X "DELETE" "http://127.0.0.1:3000/user/3" \
+     -i \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MTA3NTI0MzV9.6hSFLj8bQGdKf5CasD6AOtAanHuqJcg31ndurZoQ9sk'
+
+# Abraham requests the index action
+curl -i -X "GET" "http://127.0.0.1:3000/user" \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MTA3NTI0MzV9.6hSFLj8bQGdKf5CasD6AOtAanHuqJcg31ndurZoQ9sk'
+
+# Christopher Hemsworth requests the index action
+curl -i -X "GET" "http://127.0.0.1:3000/user" \
+     -H 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2MTA3NTM2OTN9.9_RooTkrCIY3QiAfPYti5A9idUoydySNTAgrDrhuVzQ'
      

@@ -10,7 +10,8 @@ class User < ApplicationRecord
   before_save :before_save_callback
 
   def before_save_callback
-    self.email.downcase!
+    self.email.downcase! # the email is used as a username, enforce lower case 
+    self.rights_group = 'contributor' unless self.rights_group # Default rights group
+    self.rights_group.downcase!
   end
-
 end
