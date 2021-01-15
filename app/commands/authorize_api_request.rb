@@ -16,7 +16,13 @@ class AuthorizeApiRequest
   attr_reader :headers
 
   def user
-    @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    begin
+      @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    rescue StandardError => e
+      # We get here if the user with the specified id is deleted
+      Rails.logger.debug('[AuthorizeApiRequest] e.inspect=' + e.inspect )
+    end
+
     @user || errors.add(:token, 'Invalid token') && nil
   end
 

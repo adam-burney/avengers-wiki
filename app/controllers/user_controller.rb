@@ -1,3 +1,14 @@
+#------------------------------------------------------------------
+#  User controller
+# 
+#  User rights groups are 'contributor' and 'admin':
+#  - All users have complete access the the avenger controller
+#  - At account creation, users get in the 'contributor' group by default (see model).
+#    Normal users (contributors) can only read or modify their own personnal data.
+#  - The right group 'admin' is for the system administrator(s). It gives
+#    all access including changing the rights groups of other users with the
+#    exception of the password_update action.
+#------------------------------------------------------------------
 class UserController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
 
@@ -6,16 +17,17 @@ class UserController < ApplicationController
   def create    
     if User.exists?(email: params[:email])
       render json: {error: "user_exists=true", email: params[:email]}
+      return  # Get out of here!
+    end
+
+    # *See before_save_callback in user model
+    user = User.create!(create_params)
+    if user
+      command = AuthenticateUser.call(user.email, user.password) 
+      msg_str = "New user with id: " + user.id.to_s + " created"
+      render json: {msg: msg_str, auth_token: command.result} 
     else
-      # *See before_save_callback in user model
-      user = User.create!(create_params)
-      if user
-        command = AuthenticateUser.call(user.email, user.password) 
-        msg_str = "New user with id: " + user.id.to_s + " created"
-        render json: {msg: msg_str, auth_token: command} 
-      else
-        render json: user.errors
-      end
+      render json: user.errors
     end
   end
 
@@ -24,21 +36,22 @@ class UserController < ApplicationController
 
   def index
     if @current_user.rights_group == 'admin'
-      render json: User.all, only: [:id, :email, :firstname, :lastname, :rights_group]
+      render json: User.all, except: [:password_digest]
     else
       render json: { error: 'Not Authorized' }, status: 401
     end
   end
-
+  
   def show
     unless action_permitted_for(params[:id])
       render json: { error: 'Not Authorized' }, status: 401
-      return
+      return  # Get out of here!
     end
 
     user = User.find_by(id: params[:id])
     if user
-      render json: user, only: [:id, :email, :firstname, :lastname]
+      # The user should have access to all its (readable) information.
+      render json: user, except: [:password_digest]
     else
       render_json_not_found(params[:id])
     end
@@ -47,15 +60,30 @@ class UserController < ApplicationController
   def update
     unless action_permitted_for(params[:id])
       render json: { error: 'Not Authorized' }, status: 401
-      return
+      return  # Get out of here!
     end
 
 	  user = User.find_by(id: params[:id])
     if user
-      user.update!(user_params)
-      render json: {msg: user.email + " updated"} 
+      user.update!(update_params)
+      render json: {success: user.email + " updated"} 
     else
       render_json_not_found(params[:id])
+    end
+  end
+
+  def password_update
+    begin
+      user = User.find_by(id: @current_user.id)
+      user.update!(password_and_confirmation)
+      render json: {success: user.email + " password updated"}
+
+    # Just in case something go wrong, rescue code here.     
+    rescue StandardError => e
+      Rails.logger.debug('[password_update] e.inspect=' + e.inspect )
+      # password and confirmation should be already compared by the UI
+      msg = "Not Authorized or unexpected error. Password and confirmation may not match"
+      render json: {error: msg}, status: 401
     end
   end
 
@@ -63,27 +91,28 @@ class UserController < ApplicationController
     if @current_user.rights_group != 'admin'
       logger.info('SECURITY LOG: Unauthorized set_rights action from:' + @current_user.email.to_s)
       render json: { error: 'Not Authorized' }, status: 401
+      return  # Get out of here!
+    end
+
+    user = User.find_by(id: params[:id])
+    if user
+      user.update!(set_rights_params)
+      render json: {success: user.email + " rights updated"} 
     else
-      user = User.find_by(id: params[:id])
-      if user
-        user.update!(set_rights_params)
-        render json: {msg: user.email + " rights updated"} 
-      else
-        render_json_not_found(params[:id])
-      end
+      render_json_not_found(params[:id])
     end
   end
 
   def destroy
     unless action_permitted_for(params[:id])
       render json: { error: 'Not Authorized' }, status: 401
-      return
+      return  # Get out of here!
     end
 
     user = User.find_by(id: params[:id])
     if user
       user.destroy
-      render json: {msg: user.email + " destroyed"}
+      render json: {success: user.email + " destroyed"}
     else
       render_json_not_found(params[:id])
     end
@@ -93,7 +122,7 @@ class UserController < ApplicationController
   private
 
   # Allowed parameters to protect the database  
-  def user_params
+  def update_params
     params.permit(:email, :firstname, :lastname)
   end
 
@@ -105,13 +134,18 @@ class UserController < ApplicationController
     params.permit(:rights_group)
   end
 
+  def password_and_confirmation
+    params.permit(:password, :password_confirmation)
+  end
+
   # Verify that the authentified user has modification rights for target id
   def action_permitted_for(target_id)   
     # Normal users have rights for themselves only, admin user group have all access
     if (@current_user.id == target_id.to_i  || @current_user.rights_group == 'admin')
       return true 
     else
-      logger.info('SECURITY LOG: Unauthorized user update from:' + @current_user.email.to_s)
+      str = 'SECURITY LOG: (user_controller main filter) Unauthorized access '
+      logger.info(str + 'from: ' + @current_user.email.to_s)
       return nil
     end
   end
