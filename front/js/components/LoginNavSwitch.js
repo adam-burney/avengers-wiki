@@ -4,9 +4,11 @@
 
 /* External files */
 import React from 'react';
-import Modal from 'react-modal';
-import {Link, withRouter} from 'react-router-dom';
+//import Modal from 'react-modal';
+import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {Nav, Dropdown, DropdownButton} from 'react-bootstrap';
+
 
 /* Project files */
 import NewAvenger from './NewAvenger';
@@ -27,7 +29,7 @@ const customStyles = {
 };
 
 // Bind Modal to the root app so Modal can "hide" other components while it's openned 
-Modal.setAppElement(document.getElementById('app'));
+//Modal.setAppElement(document.getElementById('app'));
 
 const LoginNavSwitch = (props) => {
   const [newAvengerIsOpen,setNewAvengerOpen] = React.useState(false);
@@ -44,39 +46,30 @@ const LoginNavSwitch = (props) => {
      if(target) {
       setRedirectTarget(null);
       props.history.push(target);
-      props.history.go();
+
+      // Patch: Utile en dernier recours si la chaîne export withrouter est brisée
+      // (L'application est rechargée à nouveau)
+      //props.history.go();
     }
   }
 
   if(props.userConnection == true) {
     return(
     <>
-      <Link to="/logout">Se déconnecter</Link> <span> </span>
-      <button onClick={openNewAvenger}>Ajouter un avenger</button>
-      <PopUpNewAvenger setRedirectTarget={setRedirectTarget} handleClose={closeNewAvenger} IsOpen={newAvengerIsOpen} />
+      <NewAvenger setRedirectTarget={setRedirectTarget} handleClose={closeNewAvenger} 
+        show={newAvengerIsOpen} />   
+     
+      <DropdownButton id="dropdown-item-button" title="Menu" variant="light"  menuAlign="right">
+        <Dropdown.Header>Modifier le Wiki </Dropdown.Header>
+        <Dropdown.Item onClick={openNewAvenger}>Ajouter un avenger</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item href="/logout">Se déconnecter</Dropdown.Item>
+      </DropdownButton>
     </>);
   }
   else {
-    return(<Link to="/login">Se connecter</Link>);
+    return(<Nav.Link href="/login">Se connecter</Nav.Link>);
   }
-};
-//  <br/><br/>
-const PopUpNewAvenger = (props) => {
-  // Well... it made sense at first to do add another component 
-  // this could go directly in NewAvenger return so the withRouter chain would
-  // give access to history and we would not need 'setRedirectTarget'
-  return(
-      <div>
-      <Modal
-          isOpen={props.IsOpen}
-          onRequestClose={props.handleClose}
-          style={customStyles}
-          contentLabel="PopUpNewAvenger"
-        >
-          <NewAvenger setRedirectTarget={props.setRedirectTarget} handleClose={props.handleClose} />
-        </Modal>
-        </div>
-  );
 };
 
 // Prop types -----------------------
@@ -84,11 +77,6 @@ LoginNavSwitch.propTypes = {
   userConnection: PropTypes.bool,
   openNewAvenger: PropTypes.func,
   closeNewAvenger: PropTypes.func
-};
-
-PopUpNewAvenger.propTypes = {
-  IsOpen: PropTypes.bool,
-  handleClose: PropTypes.func
 };
 
 export default withRouter(LoginNavSwitch);

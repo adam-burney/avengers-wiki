@@ -4,6 +4,8 @@
 
 /* External files */
 import React from 'react';
+import {Link} from 'react-router-dom';
+//import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /* Project files */
@@ -60,7 +62,7 @@ class LoginCredentials extends React.Component {
 
           this.setState({userMsg: `Vous êtes maintenant connecté.`});
           this.props.userConnection(true);
-          // *Redirect user here
+          //props.history.push("/");
 
         }
         else if (typeof jsonData.error !== 'undefined'){
@@ -81,6 +83,8 @@ class LoginCredentials extends React.Component {
   }
 
   render() {
+    const LinkToHome= <Link to="/">{"Retour à la page d'accueil"}</Link>;
+    
     return (
       <div>
         <h1>Login component</h1>
@@ -94,6 +98,7 @@ class LoginCredentials extends React.Component {
           <input type="submit" value="Se connecter" />
         </form>
         <p> {this.state.userMsg} </p>
+        {LinkToHome} 
       </div>
     );
   }
@@ -104,4 +109,5 @@ LoginCredentials.propTypes = {
 };
 
 export default LoginCredentials;
+//export default withRouter(LoginCredentials);
 

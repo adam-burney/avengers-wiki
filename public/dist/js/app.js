@@ -234,13 +234,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
-/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Home */ "./front/js/components/Home.js");
-/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Navigation */ "./front/js/components/Navigation.js");
-/* harmony import */ var _LoginCredentials__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./LoginCredentials */ "./front/js/components/LoginCredentials.js");
-/* harmony import */ var _Logout__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Logout */ "./front/js/components/Logout.js");
-/* harmony import */ var _Catalog__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Catalog */ "./front/js/components/Catalog.js");
-/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Home */ "./front/js/components/Home.js");
+/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Navigation */ "./front/js/components/Navigation.js");
+/* harmony import */ var _LoginCredentials__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./LoginCredentials */ "./front/js/components/LoginCredentials.js");
+/* harmony import */ var _Logout__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Logout */ "./front/js/components/Logout.js");
+/* harmony import */ var _Catalog__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Catalog */ "./front/js/components/Catalog.js");
+/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 
@@ -260,6 +261,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
 /* Project files */
 
 
@@ -269,7 +271,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_15__["default"])('App');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_16__["default"])('App');
 var customHistory = Object(history__WEBPACK_IMPORTED_MODULE_8__["createBrowserHistory"])();
 
 var App = /*#__PURE__*/function (_React$Component) {
@@ -288,8 +290,12 @@ var App = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       userConnection: false
     };
+    /*     this.state = {
+          userConnection: false,
+          allAvengersData: []
+        }; */
 
-    if (Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_14__["userAuthentified"])()) {
+    if (Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_15__["userAuthentified"])()) {
       _this.state.userConnection = true;
       log.info('The user is already authentified');
     }
@@ -308,25 +314,31 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("div", {
-        id: "AppMain"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Router"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Router"], {
         history: customHistory
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Navigation__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("link", {
+        rel: "stylesheet",
+        href: "https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+        integrity: "sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk",
+        crossorigin: "anonymous"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Navigation__WEBPACK_IMPORTED_MODULE_11__["default"], {
         userConnection: this.state.userConnection
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["Container"], {
+        fluid: true,
+        id: "AppMain"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
         exact: true,
         path: "/"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Home__WEBPACK_IMPORTED_MODULE_9__["default"], null), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Home__WEBPACK_IMPORTED_MODULE_10__["default"], null), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
         exact: true,
         path: "/catalog/:hero_name_url"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Catalog__WEBPACK_IMPORTED_MODULE_13__["default"], null), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Catalog__WEBPACK_IMPORTED_MODULE_14__["default"], null), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
         path: "/login"
-      }, "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_LoginCredentials__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      }, "  ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_LoginCredentials__WEBPACK_IMPORTED_MODULE_12__["default"], {
         userConnection: this.handleConnectionChange
       }), "  "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Route"], {
         path: "/logout"
-      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Logout__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(_Logout__WEBPACK_IMPORTED_MODULE_13__["default"], {
         userConnection: this.handleConnectionChange
       }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Redirect"], {
         to: "/"
@@ -364,12 +376,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
-/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
-/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
+/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
+/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 
@@ -388,13 +401,14 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
 /* Project files */
 
 
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_11__["default"])('Catalog');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_12__["default"])('Catalog');
 
 var Catalog = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(Catalog, _React$Component);
@@ -411,8 +425,8 @@ var Catalog = /*#__PURE__*/function (_React$Component) {
       avengerData: []
     };
     _this.hero_name_url = props.match.params.hero_name_url;
-    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_8__["default"]();
-    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_9__["default"]();
+    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_9__["default"]();
+    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_10__["default"]();
     return _this;
   }
 
@@ -457,24 +471,21 @@ var Catalog = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "refresh",
-    value: function refresh() {
-      // Force a render without state change...
-      this.forceUpdate();
-    }
-  }, {
     key: "render",
     value: function render() {
       var avengerData = this.state.avengerData;
-      var currentPageUrl = this.api.avengerUrl + this.hero_name_url;
       var heroImageUrl = this.api.heroImageUrl + this.hero_name_url;
       var charImageUrl = this.api.charImageUrl + this.hero_name_url;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h1", null, "Catalogue "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, avengerData.super_hero_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Nom R\xE9el: ", avengerData.real_name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Status: ", this.getStatus(avengerData), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Age: ", avengerData.age, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Description: ", avengerData.description, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
-        className: "avenger-image",
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h1", null, "Catalogue "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, avengerData.super_hero_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Nom R\xE9el: ", avengerData.real_name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Status: ", this.getStatus(avengerData), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Age: ", avengerData.age, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Description: ", avengerData.description, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Image"], {
+        rounded: true,
+        fluid: true,
+        className: "my-2",
         src: heroImageUrl,
         alt: "".concat(avengerData.super_hero_name, " picture")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
-        className: "avenger-image",
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Image"], {
+        rounded: true,
+        fluid: true,
+        className: "my-2",
         src: charImageUrl,
         alt: "".concat(avengerData.real_name, " picture")
       })));
@@ -485,10 +496,10 @@ var Catalog = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_5___default.a.Component);
 
 Catalog.propTypes = {
-  match: prop_types__WEBPACK_IMPORTED_MODULE_7___default.a.shape({
-    path: prop_types__WEBPACK_IMPORTED_MODULE_7___default.a.string,
-    params: prop_types__WEBPACK_IMPORTED_MODULE_7___default.a.shape({
-      hero_name_url: prop_types__WEBPACK_IMPORTED_MODULE_7___default.a.string
+  match: prop_types__WEBPACK_IMPORTED_MODULE_8___default.a.shape({
+    path: prop_types__WEBPACK_IMPORTED_MODULE_8___default.a.string,
+    params: prop_types__WEBPACK_IMPORTED_MODULE_8___default.a.shape({
+      hero_name_url: prop_types__WEBPACK_IMPORTED_MODULE_8___default.a.string
     })
   })
 };
@@ -518,9 +529,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
-/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
+/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 
@@ -538,12 +550,13 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 /* External files */
 
 
+
 /* Project files */
 
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_9__["default"])('Home');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_10__["default"])('Home');
 
 var Home = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(Home, _React$Component);
@@ -559,8 +572,8 @@ var Home = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       allAvengersData: []
     };
-    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_7__["default"]();
-    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_9__["default"]();
     return _this;
   }
 
@@ -612,7 +625,9 @@ var Home = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
           key: index,
           className: "avenger-preview"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("img", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["Image"], {
+          rounded: true,
+          fluid: true,
           src: _this3.api.heroImageUrl + avenger.url_string,
           alt: "".concat(avenger.super_hero_name, " picture")
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
@@ -621,9 +636,10 @@ var Home = /*#__PURE__*/function (_React$Component) {
           to: "/catalog/".concat(avenger.url_string)
         }, " ", avenger.super_hero_name, " "), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), avenger.real_name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null), "Status: ", _this3.getStatus(avenger), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("br", null)));
       });
+      var NoData = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Aucune donn\xE9e disponible \xAF\\_(\u30C4)_/\xAF ");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
         id: "Home"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h2", null, "Accueil"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, allAvengersData.length > 0 ? avengersHtml : 'No data!', " "));
+      }, allAvengersData.length > 0 ? avengersHtml : NoData);
     }
   }]);
 
@@ -659,12 +675,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
-/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
-/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
+/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
+/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 
@@ -683,6 +700,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 /* External files */
 
+ //import {withRouter} from 'react-router-dom';
+
 
 /* Project files */
 
@@ -690,7 +709,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_12__["default"])('LoginCredentials');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_13__["default"])('LoginCredentials');
 
 var LoginCredentials = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(LoginCredentials, _React$Component);
@@ -708,8 +727,8 @@ var LoginCredentials = /*#__PURE__*/function (_React$Component) {
       password: '',
       userMsg: ''
     };
-    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_10__["default"]();
-    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_9__["default"]();
+    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_11__["default"]();
+    _this.api = new _lib_Api__WEBPACK_IMPORTED_MODULE_10__["default"]();
     _this.handleInputChange = _this.handleInputChange.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this));
     return _this;
@@ -755,14 +774,14 @@ var LoginCredentials = /*#__PURE__*/function (_React$Component) {
         });
 
         if (typeof jsonData.auth_token !== 'undefined') {
-          Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_11__["setToken"])(jsonData.auth_token);
+          Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_12__["setToken"])(jsonData.auth_token);
           log.info('User logged in.');
 
           _this2.setState({
             userMsg: "Vous \xEAtes maintenant connect\xE9."
           });
 
-          _this2.props.userConnection(true); // *Redirect user here
+          _this2.props.userConnection(true); //props.history.push("/");
 
         } else if (typeof jsonData.error !== 'undefined') {
           if (typeof jsonData.error.user_authentication !== 'undefined') {
@@ -790,6 +809,9 @@ var LoginCredentials = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var LinkToHome = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__["Link"], {
+        to: "/"
+      }, "Retour à la page d'accueil");
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", null, "Login component"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("label", null, " Nom d'utilisateur: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
@@ -805,7 +827,7 @@ var LoginCredentials = /*#__PURE__*/function (_React$Component) {
       })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("input", {
         type: "submit",
         value: "Se connecter"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", null, " ", this.state.userMsg, " "));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", null, " ", this.state.userMsg, " "), LinkToHome);
     }
   }]);
 
@@ -813,9 +835,9 @@ var LoginCredentials = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_7___default.a.Component);
 
 LoginCredentials.propTypes = {
-  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_8___default.a.func
+  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_9___default.a.func
 };
-/* harmony default export */ __webpack_exports__["default"] = (LoginCredentials);
+/* harmony default export */ __webpack_exports__["default"] = (LoginCredentials); //export default withRouter(LoginCredentials);
 
 /***/ }),
 
@@ -832,11 +854,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _NewAvenger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./NewAvenger */ "./front/js/components/NewAvenger.js");
 /* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
@@ -846,6 +867,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 /* External files */
+ //import Modal from 'react-modal';
 
 
 
@@ -866,8 +888,7 @@ var customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 }; // Bind Modal to the root app so Modal can "hide" other components while it's openned 
-
-react_modal__WEBPACK_IMPORTED_MODULE_2___default.a.setAppElement(document.getElementById('app'));
+//Modal.setAppElement(document.getElementById('app'));
 
 var LoginNavSwitch = function LoginNavSwitch(props) {
   var _React$useState = react__WEBPACK_IMPORTED_MODULE_1___default.a.useState(false),
@@ -890,55 +911,41 @@ var LoginNavSwitch = function LoginNavSwitch(props) {
 
     if (target) {
       setRedirectTarget(null);
-      props.history.push(target);
-      props.history.go();
+      props.history.push(target); // Patch: Utile en dernier recours si la chaîne export withrouter est brisée
+      // (L'application est rechargée à nouveau)
+      //props.history.go();
     }
   }
 
   if (props.userConnection == true) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-      to: "/logout"
-    }, "Se d\xE9connecter"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      onClick: openNewAvenger
-    }, "Ajouter un avenger"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(PopUpNewAvenger, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewAvenger__WEBPACK_IMPORTED_MODULE_5__["default"], {
       setRedirectTarget: setRedirectTarget,
       handleClose: closeNewAvenger,
-      IsOpen: newAvengerIsOpen
-    }));
+      show: newAvengerIsOpen
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["DropdownButton"], {
+      id: "dropdown-item-button",
+      title: "Menu",
+      variant: "light",
+      menuAlign: "right"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Header, null, "Modifier le Wiki "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Item, {
+      onClick: openNewAvenger
+    }, "Ajouter un avenger"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Divider, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Dropdown"].Item, {
+      href: "/logout"
+    }, "Se d\xE9connecter")));
   } else {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-      to: "/login"
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["Nav"].Link, {
+      href: "/login"
     }, "Se connecter");
   }
-}; //  <br/><br/>
-
-
-var PopUpNewAvenger = function PopUpNewAvenger(props) {
-  // Well... it made sense at first to do add another component 
-  // this could go directly in NewAvenger return so the withRouter chain would
-  // give access to history and we would not need 'setRedirectTarget'
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_modal__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    isOpen: props.IsOpen,
-    onRequestClose: props.handleClose,
-    style: customStyles,
-    contentLabel: "PopUpNewAvenger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_NewAvenger__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    setRedirectTarget: props.setRedirectTarget,
-    handleClose: props.handleClose
-  })));
 }; // Prop types -----------------------
 
 
 LoginNavSwitch.propTypes = {
-  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-  openNewAvenger: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.func,
-  closeNewAvenger: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.func
+  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool,
+  openNewAvenger: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func,
+  closeNewAvenger: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func
 };
-PopUpNewAvenger.propTypes = {
-  IsOpen: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.bool,
-  handleClose: prop_types__WEBPACK_IMPORTED_MODULE_4___default.a.func
-};
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(LoginNavSwitch));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(LoginNavSwitch));
 
 /***/ }),
 
@@ -965,9 +972,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
-/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
+/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 
@@ -985,12 +993,13 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 /* External files */
 
 
+
 /* Project files */
 
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_9__["default"])('Logout');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_10__["default"])('Logout');
 
 var Logout = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(Logout, _React$Component);
@@ -1003,8 +1012,8 @@ var Logout = /*#__PURE__*/function (_React$Component) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Logout);
 
     _this = _super.call(this, props);
-    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_7__["default"]();
-    Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_8__["clearToken"])();
+    _this.ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_9__["clearToken"])();
     props.userConnection(false);
     log.info('User logged out.');
     return _this;
@@ -1018,7 +1027,9 @@ var Logout = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, " Vous \xEAtes maintenant d\xE9connect\xE9s ");
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Vous \xEAtes maintenant d\xE9connect\xE9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"], {
+        to: "/"
+      }, "Retour à la page d'accueil"));
     }
   }]);
 
@@ -1044,10 +1055,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
-/* harmony import */ var _LoginNavSwitch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LoginNavSwitch */ "./front/js/components/LoginNavSwitch.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var _LoginNavSwitch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./LoginNavSwitch */ "./front/js/components/LoginNavSwitch.js");
 /**
  * @file Navigation component.
  */
@@ -1056,25 +1068,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* Project files */
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_3__["default"])('Navigation'); // IMPORTANT: This needs to be called inside a router component!
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_4__["default"])('Navigation'); // IMPORTANT: This needs to be called inside a router component!
 
 var Navigation = function Navigation(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "Navigation"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/"
-  }, "Accueil"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoginNavSwitch__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
+    bg: "light",
+    variant: "light",
+    sticky: "top"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Brand, null, "Avengers Wiki"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Toggle, {
+    "aria-controls": "top-navbar"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Navbar"].Collapse, {
+    id: "top-navbar"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], {
+    className: "mr-auto"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"].Link, {
+    href: "/"
+  }, "Accueil")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Nav"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LoginNavSwitch__WEBPACK_IMPORTED_MODULE_5__["default"], {
     userConnection: props.userConnection
-  })));
-}; // Prop types -----------------------
+  }))));
+}; // <Navbar.Text className="m5" > username@domain.com </Navbar.Text> <span></span>
+// Prop types -----------------------
 
 
 Navigation.propTypes = {
-  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.bool
+  userConnection: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool
 };
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Navigation));
 
@@ -1093,10 +1115,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
-/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
-/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
-/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var _lib_Api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/Api */ "./front/js/lib/Api.js");
+/* harmony import */ var _lib_UiParams__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/UiParams */ "./front/js/lib/UiParams.js");
+/* harmony import */ var _lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/AuthToken.js */ "./front/js/lib/AuthToken.js");
+/* harmony import */ var _utils_logger__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/logger */ "./front/js/utils/logger.js");
 
 
 /**
@@ -1109,13 +1132,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* External files */
 
+
 /* Project files */
 
 
 
 
 
-var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_5__["default"])('NewAvenger');
+var log = Object(_utils_logger__WEBPACK_IMPORTED_MODULE_6__["default"])('NewAvenger');
 
 var NewAvenger = function NewAvenger(props) {
   var pageTitle = "Ajouter un avenger au wiki";
@@ -1135,21 +1159,31 @@ var NewAvenger = function NewAvenger(props) {
       userMsg = _useState6[0],
       setuserMsg = _useState6[1];
 
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('success'),
+      _useState8 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState7, 2),
+      alertColor = _useState8[0],
+      setAlertColor = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState10 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState9, 2),
+      alertVisible = _useState10[0],
+      setAlertVisible = _useState10[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    var ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_3__["default"]();
+    var ui = new _lib_UiParams__WEBPACK_IMPORTED_MODULE_4__["default"]();
     document.title = "".concat(ui.mainTitle, ": ").concat(pageTitle);
   });
 
   function handleSubmit(event) {
     event.preventDefault();
-    var api = new _lib_Api__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    var api = new _lib_Api__WEBPACK_IMPORTED_MODULE_3__["default"]();
     props.setRedirectTarget(null); // Default: no redirection
 
     var requestOptions = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_4__["getToken"])()
+        'Authorization': Object(_lib_AuthToken_js__WEBPACK_IMPORTED_MODULE_5__["getToken"])()
       },
       body: JSON.stringify({
         super_hero_name: heroName,
@@ -1159,45 +1193,116 @@ var NewAvenger = function NewAvenger(props) {
     fetch(api.avengerUrl, requestOptions).then(function (response) {
       if (response.ok) {
         return response.json();
+      } else {
+        // TODO: Manage the case where the token is expired
+        // This would be needed for every api request... time to try axios ?
+        var jsonData = response.json();
+
+        if (typeof jsonData.error === 'string') {
+          // {...}
+          log.debug('Error: ' + jsonData.error);
+        }
+
+        throw new Error('Response code 401 unautorized is not managed yet');
       }
 
       throw new Error('API fetch failed: HTTP status is not in 2xx range');
     }).then(function (jsonData) {
       if (typeof jsonData.error === 'undefined') {
         setuserMsg("".concat(heroName, " cr\xE9\xE9 avec succ\xE8s"));
+        setAlertVisible(true);
+        setAlertColor('success'); // TODO: The API should return the new url instead of repeating the conversion
+        // of hero_name to urls
+
         props.setRedirectTarget("/catalog/".concat(api.heroNameToUrl(heroName)));
       } else {
         setuserMsg("Erreur! Le avenger que vous tentez de cr\xE9er existe d\xE9j\xE0 dans la base de donn\xE9es.");
+        setAlertVisible(true);
+        setAlertColor('danger');
         log.info('Database error: ' + jsonData.error);
       }
     })["catch"](function (error) {
       var msgStr = "Une erreur est survenue lors de la connection au serveur. ";
       msgStr += "Vous pouvez essayer \xE0 nouveau.";
       setuserMsg(msgStr);
-      log.debug('No response from API:' + error);
+      log.debug('API request failed: ' + error);
     });
   }
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", null, pageTitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Nom de h\xE9ro (obligatoire) : ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
+    centered: true,
+    show: props.show
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Header, {
+    closeButton: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Title, null, pageTitle)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "p5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, "Nom de h\xE9ro (obligatoire) : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "text",
     name: "heroname",
     value: heroName,
     onChange: function onChange(event) {
       return setHeroName(event.target.value);
     }
-  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, " Nom r\xE9el : ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Label, null, " Nom r\xE9el : "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Form"].Control, {
     type: "text",
     name: "realname",
     value: realName,
     onChange: function onChange(event) {
       return setRealName(event.target.value);
     }
-  })), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Alert"], {
+    show: alertVisible,
+    variant: alertColor,
+    onClose: function onClose() {
+      return setAlertVisible(false);
+    },
+    dismissible: true
+  }, userMsg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Modal"].Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    variant: "primary",
     onClick: handleSubmit
-  }, "Cr\xE9er"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+  }, "Cr\xE9er"), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+    variant: "secondary",
     onClick: props.handleClose
-  }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, " ", userMsg, " "));
+  }, "Fermer"))));
 };
+/*
+// With this code we get: "Uncaught Error: Too many re-renders."
+
+function handleHide() {
+  log.debug('handleHide() executed');
+  setAlertVisible(false);
+  props.handleClose;
+}
+
+return (      
+  <div>
+    <Modal centered show={props.show} onHide={handleHide()}>
+      {...}
+    </Modal >
+  </div>
+);
+
+// Same error: "Uncaught Error: Too many re-renders." with:
+ <Modal centered show={props.show} onHide={props.handleClose} onEntered={setAlertVisible(false)}>
+// or...
+ <Modal centered show={props.show} onHide={props.handleClose} onShow={setAlertVisible(false)}>
+ // or...
+ <Modal centered show={props.show} onHide={props.handleClose} onExited={setAlertVisible(false)}>
+
+// Using a button, same error...
+  function handleClose(handleClose) {
+    log.debug('handleClose() executed');
+    setAlertVisible(false);
+    handleClose;
+  }
+  {...}
+  <Modal.Footer>
+    {...}
+    <Button variant="secondary" onClick={handleClose(props.handleClose)}>Fermer</Button>
+  </Modal.Footer>
+          */
+// Form.Control type="text" placeholder="Normal text" 
+
 
 /* harmony default export */ __webpack_exports__["default"] = (NewAvenger);
 

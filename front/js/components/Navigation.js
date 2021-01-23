@@ -5,6 +5,7 @@
 /* External files */
  import React from 'react';
  import {Link, withRouter} from 'react-router-dom';
+ import {Navbar, Nav} from 'react-bootstrap';
  import PropTypes from 'prop-types';
 
 /* Project files */
@@ -17,14 +18,23 @@ const log = getLogger('Navigation');
 const Navigation = (props) => {
 
   return(
-    <div id='Navigation'>
-      <nav>
-        <Link to="/">Accueil</Link> <span> </span>
+  <Navbar bg="light" variant="light" sticky="top">
+    <Navbar.Brand>Avengers Wiki</Navbar.Brand>
+    <Navbar.Toggle aria-controls="top-navbar" />
+    <Navbar.Collapse id="top-navbar">
+      <Nav className="mr-auto">
+        <Nav.Link href="/">Accueil</Nav.Link>
+      </Nav>
+      
+      <Nav >
         <LoginNavSwitch userConnection={props.userConnection} />
-      </nav>
-    </div>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
   );
 };
+
+// <Navbar.Text className="m5" > username@domain.com </Navbar.Text> <span></span>
 
 // Prop types -----------------------
 Navigation.propTypes = {

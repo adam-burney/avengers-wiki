@@ -5,6 +5,7 @@
 /* External files */
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+import {Image, Button} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 /* Project files */
@@ -73,10 +74,12 @@ class Catalog extends React.Component {
           Description: {avengerData.description} <br/>
         </p>
         <div>
-          <img className='avenger-image' src={heroImageUrl} alt={`${avengerData.super_hero_name} picture`} />
+          <Image rounded fluid className="my-2"  src={heroImageUrl} 
+            alt={`${avengerData.super_hero_name} picture`}  />
         </div>
         <div>
-          <img className='avenger-image' src={charImageUrl} alt={`${avengerData.real_name} picture`} />
+          <Image rounded fluid className="my-2" src={charImageUrl}
+            alt={`${avengerData.real_name} picture`} />
         </div>
       </div>
     );

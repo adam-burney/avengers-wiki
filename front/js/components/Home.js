@@ -5,6 +5,7 @@
 /* External files */
 import React from "react";
 import { Link } from 'react-router-dom';
+import {Image, Button} from 'react-bootstrap';
 
 /* Project files */
 import Api from '../lib/Api';
@@ -16,9 +17,8 @@ const log = getLogger('Home');
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      allAvengersData: []
-    };
+    this.state = {allAvengersData: []};
+
     this.api = new Api;
     this.ui = new UiParams;
   }
@@ -55,10 +55,11 @@ class Home extends React.Component {
   render() {
     // At this point, the REST API has been fetched for all avengers, *not the hole data
     const allAvengersData = this.state.allAvengersData;
-
+    
     const avengersHtml = allAvengersData.map((avenger, index) => (
       <div key={index} className="avenger-preview">
-        <img src={this.api.heroImageUrl + avenger.url_string} alt={`${avenger.super_hero_name} picture`} />
+        <Image rounded fluid src={this.api.heroImageUrl + avenger.url_string}
+          alt={`${avenger.super_hero_name} picture`} />
         <p className="avenger-preview">
           <Link to={`/catalog/${avenger.url_string}`}> {avenger.super_hero_name} </Link> <br/> 
           {avenger.real_name} <br/>
@@ -66,11 +67,12 @@ class Home extends React.Component {
         </p>
       </div >
     ));
+    
+    const NoData = <p>Aucune donnée disponible ¯\_(ツ)_/¯ </p>;
 
     return (
       <div  id='Home'>
-        <h2>Accueil</h2>
-        <div>{allAvengersData.length > 0 ? avengersHtml : 'No data!' } </div>
+        {allAvengersData.length > 0 ? avengersHtml : NoData }
       </div>
     );
   }

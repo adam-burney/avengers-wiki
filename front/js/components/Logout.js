@@ -5,6 +5,7 @@
 /* External files */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 /* Project files */
 import UiParams from '../lib/UiParams';
@@ -29,7 +30,11 @@ class Logout extends React.Component {
 
   render() {
     return(
-      <p> Vous êtes maintenant déconnectés </p>
+      <div>
+        <p>Vous êtes maintenant déconnecté</p>
+        <Link to="/">{"Retour à la page d'accueil"}</Link>
+      </div>
+
     );
   }
 }
